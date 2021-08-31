@@ -1,1 +1,1 @@
-# LOL-E-SPORTS-MANAGER
+# LOL: Pick Ban Simulator
