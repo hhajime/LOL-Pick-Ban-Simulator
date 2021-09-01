@@ -50,7 +50,82 @@ Widget basicAppBar(context) {
                               decoration: myBoxDecoration(),
                               width: displayWidth * 0.8,
                               height: displayHeight * 0.8,
-                              child: Column())));
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Container(
+                                        width: displayWidth * 0.427,
+                                        height: displayHeight * 0.05,
+                                        alignment: Alignment.center,
+                                        decoration:
+                                            BoxDecoration(color: mainColor),
+                                        child: Text(
+                                          'Blue Team',
+                                          style: teamColor(Colors.blue),
+                                        )),
+                                  ),
+                                  Row(
+                                    children: [
+                                      blueTeamExpanded(0),
+                                      blueTeamExpanded(1),
+                                      blueTeamExpanded(2),
+                                      blueTeamExpanded(3),
+                                      blueTeamExpanded(4),
+                                    ],
+                                  ),
+                                  Container(
+                                      height: displayHeight * 0.1,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                        bottom: BorderSide(color: subColor),
+                                      )),
+                                      child: Row(
+                                        children: [
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo()
+                                        ],
+                                      )),
+                                  Container(
+                                    child: Container(
+                                        width: displayWidth * 0.427,
+                                        height: displayHeight * 0.05,
+                                        alignment: Alignment.center,
+                                        decoration:
+                                            BoxDecoration(color: mainColor),
+                                        child: Text(
+                                          'Red Team',
+                                          style: teamColor(Colors.red),
+                                        )),
+                                  ),
+                                  Row(
+                                    children: [
+                                      redTeamExpanded(0),
+                                      redTeamExpanded(1),
+                                      redTeamExpanded(2),
+                                      redTeamExpanded(3),
+                                      redTeamExpanded(4),
+                                    ],
+                                  ),
+                                  Container(
+                                      height: displayHeight * 0.1,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                        bottom: BorderSide(color: subColor),
+                                      )),
+                                      child: Row(
+                                        children: [
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo(),
+                                          champInfo()
+                                        ],
+                                      )),
+                                ],
+                              ))));
                 });
           },
         ),
@@ -65,6 +140,84 @@ Widget basicAppBar(context) {
       ]),
       brightness: Brightness.dark,
       backgroundColor: mainColor);
+}
+
+Widget champInfo() {
+  return Expanded(
+      flex: 1,
+      child: Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  'Tanker',
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  'AP',
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  'Hard CC',
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ))
+        ],
+      ));
+}
+
+Widget blueTeamExpanded(n) {
+  final upController = Get.put(UpdateController());
+  return Expanded(
+    flex: 1,
+    child: Container(
+      height: displayHeight * 0.08,
+      decoration: myBoxDecoration(),
+      child: Image.asset(
+        '${upController.bluPlayer[n]}',
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
+}
+
+Widget redTeamExpanded(n) {
+  final upController = Get.put(UpdateController());
+  return Expanded(
+    flex: 1,
+    child: Container(
+      height: displayHeight * 0.08,
+      decoration: myBoxDecoration(),
+      child: Image.asset(
+        '${upController.redPlayer[n]}',
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
 }
 
 BoxDecoration myTextBoxDecoration(double width, Color colors, double radius) {

@@ -23,21 +23,9 @@ String targetTeam;
 String draggingTeam;
 String dropdownValue = null;
 RxString testStr = ''.obs;
-String playerSex;
-String playerCountry;
-String hopeTeam;
-String playerSex2;
-String playerCountry2;
-String hopeTeam2;
 
 int tempNum;
 int trigger;
-String birthYear = 'birthYear';
-String birthMonth = 'birthMonth';
-String birthDay = 'birthDay';
-String birthYear2;
-String birthMonth2;
-String birthDay2;
 
 double width;
 double height;
