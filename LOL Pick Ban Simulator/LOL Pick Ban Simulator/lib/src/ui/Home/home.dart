@@ -319,8 +319,8 @@ class _Home extends State<StatefulWidget> {
                                 border: Border.all(color: subColor),
                                 image: DecorationImage(
                                     image:
-                                        new AssetImage('assets/images/map.jpg'),
-                                    fit: BoxFit.fitHeight)),
+                                        new AssetImage('assets/images/map.png'),
+                                    fit: BoxFit.cover)),
                           ),
                         ),
                       ),

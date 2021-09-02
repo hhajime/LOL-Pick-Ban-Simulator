@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/data/list.dart';
+import 'package:flutter_application_1/src/data/champInfo.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/src/getx/getx.dart';
 import 'package:flip_card/flip_card.dart';
@@ -81,11 +82,11 @@ Widget basicAppBar(context) {
                                       )),
                                       child: Row(
                                         children: [
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo()
+                                          blueChampInfo(0),
+                                          blueChampInfo(1),
+                                          blueChampInfo(2),
+                                          blueChampInfo(3),
+                                          blueChampInfo(4)
                                         ],
                                       )),
                                   Container(
@@ -117,11 +118,11 @@ Widget basicAppBar(context) {
                                       )),
                                       child: Row(
                                         children: [
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo(),
-                                          champInfo()
+                                          redChampInfo(0),
+                                          redChampInfo(1),
+                                          redChampInfo(2),
+                                          redChampInfo(3),
+                                          redChampInfo(4)
                                         ],
                                       )),
                                 ],
@@ -142,7 +143,52 @@ Widget basicAppBar(context) {
       backgroundColor: mainColor);
 }
 
-Widget champInfo() {
+Widget blueChampInfo(n) {
+  final upController = Get.put(UpdateController());
+  String name = '';
+  String role = '';
+  String ADAP = '';
+  String CC = '';
+  for (int i = 0; i < Champions.top.length; i++) {
+    if (upController.bluPlayer[n] == Champions.top[i]) {
+      name = championsInfo.top[i][0];
+      role = championsInfo.top[i][1];
+      ADAP = championsInfo.top[i][2];
+      CC = championsInfo.top[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.jug.length; i++) {
+    if (upController.bluPlayer[n] == Champions.jug[i]) {
+      name = championsInfo.jug[i][0];
+      role = championsInfo.jug[i][1];
+      ADAP = championsInfo.jug[i][2];
+      CC = championsInfo.jug[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.mid.length; i++) {
+    if (upController.bluPlayer[n] == Champions.mid[i]) {
+      name = championsInfo.mid[i][0];
+      role = championsInfo.mid[i][1];
+      ADAP = championsInfo.mid[i][2];
+      CC = championsInfo.mid[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.bot.length; i++) {
+    if (upController.bluPlayer[n] == Champions.bot[i]) {
+      name = championsInfo.bot[i][0];
+      role = championsInfo.bot[i][1];
+      ADAP = championsInfo.bot[i][2];
+      CC = championsInfo.bot[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.sup.length; i++) {
+    if (upController.bluPlayer[n] == Champions.sup[i]) {
+      name = championsInfo.sup[i][0];
+      role = championsInfo.sup[i][1];
+      ADAP = championsInfo.sup[i][2];
+      CC = championsInfo.sup[i][3];
+    }
+  }
   return Expanded(
       flex: 1,
       child: Column(
@@ -151,7 +197,20 @@ Widget champInfo() {
               flex: 1,
               child: Container(
                 child: Text(
-                  'Tanker',
+                  name,
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.01,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  role,
                   style: TextStyle(
                     color: subColor,
                     fontSize: displayHeight * 0.012,
@@ -164,7 +223,7 @@ Widget champInfo() {
               flex: 1,
               child: Container(
                 child: Text(
-                  'AP',
+                  ADAP,
                   style: TextStyle(
                     color: subColor,
                     fontSize: displayHeight * 0.012,
@@ -177,7 +236,113 @@ Widget champInfo() {
               flex: 1,
               child: Container(
                 child: Text(
-                  'Hard CC',
+                  CC,
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ))
+        ],
+      ));
+}
+
+Widget redChampInfo(n) {
+  final upController = Get.put(UpdateController());
+  String name = '';
+  String role = '';
+  String ADAP = '';
+  String CC = '';
+  for (int i = 0; i < Champions.top.length; i++) {
+    if (upController.redPlayer[n] == Champions.top[i]) {
+      name = championsInfo.top[i][0];
+      role = championsInfo.top[i][1];
+      ADAP = championsInfo.top[i][2];
+      CC = championsInfo.top[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.jug.length; i++) {
+    if (upController.redPlayer[n] == Champions.jug[i]) {
+      name = championsInfo.jug[i][0];
+      role = championsInfo.jug[i][1];
+      ADAP = championsInfo.jug[i][2];
+      CC = championsInfo.jug[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.mid.length; i++) {
+    if (upController.redPlayer[n] == Champions.mid[i]) {
+      name = championsInfo.mid[i][0];
+      role = championsInfo.mid[i][1];
+      ADAP = championsInfo.mid[i][2];
+      CC = championsInfo.mid[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.bot.length; i++) {
+    if (upController.redPlayer[n] == Champions.bot[i]) {
+      name = championsInfo.bot[i][0];
+      role = championsInfo.bot[i][1];
+      ADAP = championsInfo.bot[i][2];
+      CC = championsInfo.bot[i][3];
+    }
+  }
+  for (int i = 0; i < Champions.sup.length; i++) {
+    if (upController.redPlayer[n] == Champions.sup[i]) {
+      name = championsInfo.sup[i][0];
+      role = championsInfo.sup[i][1];
+      ADAP = championsInfo.sup[i][2];
+      CC = championsInfo.sup[i][3];
+    }
+  }
+  return Expanded(
+      flex: 1,
+      child: Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.01,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  role,
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  ADAP,
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: displayHeight * 0.012,
+                    fontFamily: 'SegoeUI',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  CC,
                   style: TextStyle(
                     color: subColor,
                     fontSize: displayHeight * 0.012,
