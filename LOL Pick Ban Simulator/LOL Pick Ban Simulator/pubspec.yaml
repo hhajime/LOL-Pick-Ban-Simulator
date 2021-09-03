@@ -74,5 +74,7 @@ flutter:
     - assets/images/league_picture/lpl/
     - assets/images/player/card/
     - assets/images/test/
+    - assets/images/adap/
+    - assets/images/cc/
 
 

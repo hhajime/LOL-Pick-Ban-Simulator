@@ -147,8 +147,8 @@ Widget blueChampInfo(n) {
   final upController = Get.put(UpdateController());
   String name = '';
   String role = '';
-  String ADAP = '';
-  String CC = '';
+  String ADAP = 'none';
+  String CC = 'No CC';
   for (int i = 0; i < Champions.top.length; i++) {
     if (upController.bluPlayer[n] == Champions.top[i]) {
       name = championsInfo.top[i][0];
@@ -222,29 +222,19 @@ Widget blueChampInfo(n) {
           Expanded(
               flex: 1,
               child: Container(
-                child: Text(
-                  ADAP,
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: displayHeight * 0.012,
-                    fontFamily: 'SegoeUI',
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Image.asset(
+                  'assets/images/adap/${ADAP}.png',
+                  fit: BoxFit.cover,
                 ),
               )),
           Expanded(
               flex: 1,
               child: Container(
-                child: Text(
-                  CC,
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: displayHeight * 0.012,
-                    fontFamily: 'SegoeUI',
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Image.asset(
+                  'assets/images/cc/${CC}.png',
+                  fit: BoxFit.cover,
                 ),
-              ))
+              )),
         ],
       ));
 }
@@ -253,8 +243,8 @@ Widget redChampInfo(n) {
   final upController = Get.put(UpdateController());
   String name = '';
   String role = '';
-  String ADAP = '';
-  String CC = '';
+  String ADAP = 'none';
+  String CC = 'No CC';
   for (int i = 0; i < Champions.top.length; i++) {
     if (upController.redPlayer[n] == Champions.top[i]) {
       name = championsInfo.top[i][0];
@@ -328,29 +318,19 @@ Widget redChampInfo(n) {
           Expanded(
               flex: 1,
               child: Container(
-                child: Text(
-                  ADAP,
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: displayHeight * 0.012,
-                    fontFamily: 'SegoeUI',
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Image.asset(
+                  'assets/images/adap/${ADAP}.png',
+                  fit: BoxFit.cover,
                 ),
               )),
           Expanded(
               flex: 1,
               child: Container(
-                child: Text(
-                  CC,
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: displayHeight * 0.012,
-                    fontFamily: 'SegoeUI',
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Image.asset(
+                  'assets/images/cc/${CC}.png',
+                  fit: BoxFit.cover,
                 ),
-              ))
+              )),
         ],
       ));
 }
