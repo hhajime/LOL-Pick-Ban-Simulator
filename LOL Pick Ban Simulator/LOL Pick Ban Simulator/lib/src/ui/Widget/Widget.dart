@@ -224,7 +224,7 @@ Widget blueChampInfo(n) {
               child: Container(
                 child: Image.asset(
                   'assets/images/adap/${ADAP}.png',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.scaleDown,
                 ),
               )),
           Expanded(
@@ -232,7 +232,7 @@ Widget blueChampInfo(n) {
               child: Container(
                 child: Image.asset(
                   'assets/images/cc/${CC}.png',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.scaleDown,
                 ),
               )),
         ],
@@ -495,6 +495,7 @@ Widget feedbackContainer(dynamic com) {
       width: displayWidth * 0.2,
       height: displayHeight * 0.12,
       decoration: new BoxDecoration(
+        shape: BoxShape.circle,
         color: mainColor,
         border: Border.all(color: subColor, width: 3),
         image: DecorationImage(image: AssetImage(com), fit: BoxFit.cover),

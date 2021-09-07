@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -312,20 +313,34 @@ class _Home extends State<StatefulWidget> {
                       Stack(
                         children: [
                           InteractiveViewer(
-                            minScale: 1.0,
-                            maxScale: 4.0,
-                            child: Container(
-                              height: displayHeight * 0.43,
-                              width: displayWidth * 0.66,
-                              decoration: BoxDecoration(
-                                  color: mainColor,
-                                  border: Border.all(color: subColor),
-                                  image: DecorationImage(
-                                      image: new AssetImage(
-                                          'assets/images/map.png'),
-                                      fit: BoxFit.cover)),
-                            ),
-                          ),
+                              minScale: 1.0,
+                              maxScale: 4.0,
+                              child: Stack(children: [
+                                Container(
+                                  height: displayHeight * 0.43,
+                                  width: displayWidth * 0.66,
+                                  decoration: BoxDecoration(
+                                      color: mainColor,
+                                      image: DecorationImage(
+                                          image: new AssetImage(
+                                              'assets/images/map.png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                                Positioned(
+                                  left: displayWidth * 0.54,
+                                  top: displayHeight * 0.0,
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    child: IconButton(
+                                        icon: Icon(Icons.zoom_in),
+                                        color: subColor,
+                                        onPressed: () {
+                                          debugPrint('hell');
+                                        }),
+                                  ),
+                                )
+                              ])),
                         ],
                       ),
                       Column(
@@ -633,3 +648,16 @@ Widget championGrid(List _image, List _image2) {
     color: mainColor,
   );
 }
+
+/*extension GlobalKeyExtension on GlobalKey {
+  Rect get globalPaintBounds {
+    final renderObject = currentContext?.findRenderObject();
+    var translation = renderObject?.getTransformTo(null)?.getTranslation();
+    if (translation != null && renderObject?.paintBounds != null) {
+      return renderObject.paintBounds
+          .shift(Offset(translation.x, translation.y));
+    } else {
+      return null;
+    }
+  }
+}*/
