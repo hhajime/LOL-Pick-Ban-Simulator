@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -309,20 +309,24 @@ class _Home extends State<StatefulWidget> {
                           playerContainer(upController.bluPlayer, 'blue', 4)
                         ],
                       ),
-                      Container(
-                        child: InteractiveViewer(
-                          child: Container(
-                            height: displayHeight * 0.43,
-                            width: displayWidth * 0.66,
-                            decoration: BoxDecoration(
-                                color: mainColor,
-                                border: Border.all(color: subColor),
-                                image: DecorationImage(
-                                    image:
-                                        new AssetImage('assets/images/map.png'),
-                                    fit: BoxFit.cover)),
+                      Stack(
+                        children: [
+                          InteractiveViewer(
+                            minScale: 1.0,
+                            maxScale: 4.0,
+                            child: Container(
+                              height: displayHeight * 0.43,
+                              width: displayWidth * 0.66,
+                              decoration: BoxDecoration(
+                                  color: mainColor,
+                                  border: Border.all(color: subColor),
+                                  image: DecorationImage(
+                                      image: new AssetImage(
+                                          'assets/images/map.png'),
+                                      fit: BoxFit.cover)),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                       Column(
                         children: [
@@ -475,6 +479,10 @@ Widget banContainer(List banList, String team, int n) {
 
 Widget playerContainer(List playerList, String team, int n) {
   final upController = Get.put(UpdateController());
+  Matrix4 mirror = Matrix4.rotationY(0);
+  if (team == 'red') {
+    mirror = Matrix4.rotationY(math.pi);
+  }
   return Container(
     width: displayWidth * 0.17,
     height: displayHeight * 0.086,
@@ -534,13 +542,16 @@ Widget playerContainer(List playerList, String team, int n) {
                 dragging1 = playerList[n];
                 tempNum = n;
               },
-              child: Container(
-                  child: Obx(() => Image.asset(
-                        playerList[n], //3)
-                        fit: BoxFit.cover,
-                        width: displayWidth * 0.17,
-                        height: displayHeight * 0.086,
-                      ))),
+              child: Transform(
+                  alignment: Alignment.center,
+                  transform: mirror,
+                  child: Container(
+                      child: Obx(() => Image.asset(
+                            playerList[n], //3)
+                            fit: BoxFit.cover,
+                            width: displayWidth * 0.17,
+                            height: displayHeight * 0.086,
+                          )))),
             ),
           ),
           Positioned(
