@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-ScrollController scrollController;
+ScrollController? scrollController;
 
 Color mainColor = Color(0xFF063039);
 Color subColor = Color(0xFFC8AA6E);
@@ -14,24 +14,24 @@ bool draggableState = false;
 DateTime date = DateTime.now();
 
 String champIcon = "assets/images/champion_icon.jpg";
-String dragging1;
-String dragging2;
-String dragging3;
-String champName;
-String banTemp;
-String targetTeam;
-String draggingTeam;
-String dropdownValue = null;
+String? dragging1;
+String? dragging2;
+String? dragging3;
+String? champName;
+String? banTemp;
+String? targetTeam;
+String? draggingTeam;
+String? dropdownValue;
 RxString testStr = ''.obs;
 
-int tempNum;
-int trigger;
+int tempNum = 0;
+int? trigger;
 
-double width;
-double height;
-double displayHeight;
-double displayWidth;
-double displayRatio;
+double? width;
+double? height;
+double displayHeight = 0;
+double displayWidth = 0;
+double displayRatio = 1;
 
 List topList = Champions.top;
 List jugList = Champions.jug;

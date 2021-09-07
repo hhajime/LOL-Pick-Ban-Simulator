@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/data/list.dart';
+import 'package:flutter_application_1/src/ui/Home/painter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/src/getx/getx.dart';
@@ -29,12 +30,119 @@ class _Home extends State<StatefulWidget> {
           if (!currentFocus.hasPrimaryFocus) {
             currentFocus.unfocus();
           }
-          FocusManager.instance.primaryFocus.unfocus();
+          FocusManager.instance.primaryFocus?.unfocus();
           new TextEditingController().clear();
         },
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: basicAppBar(context),
+          appBar: AppBar(
+              actions: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: mainColor, onPrimary: subColor),
+                    child: Icon(Icons.info),
+                    onPressed: () => showDialog<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40)),
+                              elevation: 16,
+                              child: SingleChildScrollView(
+                                  child: Container(
+                                      decoration: myBoxDecoration(),
+                                      width: displayWidth * 0.8,
+                                      height: displayHeight * 0.8,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Container(
+                                                width: displayWidth * 0.427,
+                                                height: displayHeight * 0.05,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    color: mainColor),
+                                                child: Text(
+                                                  'Blue Team',
+                                                  style: teamColor(Colors.blue),
+                                                )),
+                                          ),
+                                          Row(
+                                            children: [
+                                              blueTeamExpanded(0),
+                                              blueTeamExpanded(1),
+                                              blueTeamExpanded(2),
+                                              blueTeamExpanded(3),
+                                              blueTeamExpanded(4),
+                                            ],
+                                          ),
+                                          Container(
+                                              height: displayHeight * 0.1,
+                                              decoration: BoxDecoration(
+                                                  border: Border(
+                                                bottom:
+                                                    BorderSide(color: subColor),
+                                              )),
+                                              child: Row(
+                                                children: [
+                                                  blueChampInfo(0),
+                                                  blueChampInfo(1),
+                                                  blueChampInfo(2),
+                                                  blueChampInfo(3),
+                                                  blueChampInfo(4)
+                                                ],
+                                              )),
+                                          Container(
+                                            child: Container(
+                                                width: displayWidth * 0.427,
+                                                height: displayHeight * 0.05,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    color: mainColor),
+                                                child: Text(
+                                                  'Red Team',
+                                                  style: teamColor(Colors.red),
+                                                )),
+                                          ),
+                                          Row(
+                                            children: [
+                                              redTeamExpanded(0),
+                                              redTeamExpanded(1),
+                                              redTeamExpanded(2),
+                                              redTeamExpanded(3),
+                                              redTeamExpanded(4),
+                                            ],
+                                          ),
+                                          Container(
+                                              height: displayHeight * 0.1,
+                                              decoration: BoxDecoration(
+                                                  border: Border(
+                                                bottom:
+                                                    BorderSide(color: subColor),
+                                              )),
+                                              child: Row(
+                                                children: [
+                                                  redChampInfo(0),
+                                                  redChampInfo(1),
+                                                  redChampInfo(2),
+                                                  redChampInfo(3),
+                                                  redChampInfo(4)
+                                                ],
+                                              )),
+                                        ],
+                                      ))));
+                        })),
+              ],
+              iconTheme: IconThemeData(color: subColor),
+              toolbarHeight: displayHeight * 0.05,
+              title: Row(children: [
+                Text(
+                  "LOL: Pick Ban Simulator",
+                  style: TextStyle(color: subColor, fontSize: displayRatio * 8),
+                ),
+              ]),
+              brightness: Brightness.dark,
+              backgroundColor: mainColor),
           drawer: Drawer(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -155,87 +263,82 @@ class _Home extends State<StatefulWidget> {
                     color: mainColor,
                   ),*/
                     dense: true,
-                    onTap: () {
-                      return showDialog<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Alert Before Progress'),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: const <Widget>[
-                                  Text(
-                                      'Current data will be removed without saving it'),
-                                ],
-                              ),
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text(
-                                  'Approve',
-                                  style: TextStyle(color: subColor),
+                    onTap: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Alert Before Progress'),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: const <Widget>[
+                                    Text(
+                                        'Current data will be removed without saving it'),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  for (int i = 0; i < 5; i++) {
-                                    upController.bluPlayer[i] = champIcon;
-                                    upController.blueBan[i] = champIcon;
-                                    upController.redPlayer[i] = champIcon;
-                                    upController.redBan[i] = champIcon;
-                                  }
-                                  setState(() {});
-                                },
                               ),
-                            ],
-                          );
-                        },
-                      );
-                    }),
-                ListTile(
-                  leading: Icon(
-                    Icons.exit_to_app,
-                    size: displayRatio * 20,
-                    color: mainColor,
-                  ),
-                  title: Text(
-                    'Exit App',
-                    style: teamColor(mainColor),
-                  ),
-                  dense: true,
-                  onTap: () {
-                    return showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Exit Alert'),
-                          content: SingleChildScrollView(
-                            child: ListBody(
-                              children: const <Widget>[
-                                Text(
-                                    'Current data will be removed without saving it.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text(
+                                    'Approve',
+                                    style: TextStyle(color: subColor),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    for (int i = 0; i < 5; i++) {
+                                      upController.bluPlayer[i] = champIcon;
+                                      upController.blueBan[i] = champIcon;
+                                      upController.redPlayer[i] = champIcon;
+                                      upController.redBan[i] = champIcon;
+                                    }
+                                    setState(() {});
+                                  },
+                                ),
                               ],
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text(
-                                'Approve',
-                                style: TextStyle(color: subColor),
+                            );
+                          },
+                        )),
+                ListTile(
+                    leading: Icon(
+                      Icons.exit_to_app,
+                      size: displayRatio * 20,
+                      color: mainColor,
+                    ),
+                    title: Text(
+                      'Exit App',
+                      style: teamColor(mainColor),
+                    ),
+                    dense: true,
+                    onTap: () => showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Exit Alert'),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: const <Widget>[
+                                    Text(
+                                        'Current data will be removed without saving it.'),
+                                  ],
+                                ),
                               ),
-                              onPressed: () {
-                                if (Platform.isAndroid) {
-                                  SystemNavigator.pop();
-                                } else
-                                  exit(0);
-                                ;
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text(
+                                    'Approve',
+                                    style: TextStyle(color: subColor),
+                                  ),
+                                  onPressed: () {
+                                    if (Platform.isAndroid) {
+                                      SystemNavigator.pop();
+                                    } else
+                                      exit(0);
+                                    ;
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        )),
                 Container(
                   padding: EdgeInsets.only(top: displayHeight * 0.38),
                   child: Text(
@@ -337,6 +440,7 @@ class _Home extends State<StatefulWidget> {
                                         color: subColor,
                                         onPressed: () {
                                           debugPrint('hell');
+                                          Get.to(PainterScreen());
                                         }),
                                   ),
                                 )

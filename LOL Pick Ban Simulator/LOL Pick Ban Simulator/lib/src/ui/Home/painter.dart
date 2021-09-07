@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:painter/painter.dart';
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
+class PainterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
