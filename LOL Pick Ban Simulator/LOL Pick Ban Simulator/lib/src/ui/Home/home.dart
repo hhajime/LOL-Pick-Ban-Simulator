@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/data/list.dart';
-import 'package:flutter_application_1/src/ui/Home/painter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/src/getx/getx.dart';
@@ -235,17 +234,39 @@ class _Home extends State<StatefulWidget> {
                   ),
                   dense: true,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.download,
-                    size: displayRatio * 20,
-                    color: mainColor,
-                  ),
-                  title: Text(
-                    'Load',
-                    style: teamColor(mainColor),
-                  ),
-                  dense: true,
+                ExpansionTile(
+                  title: Row(children: [
+                    Icon(
+                      Icons.download,
+                      size: displayRatio * 20,
+                      color: mainColor,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: displayWidth * 0.04),
+                    ),
+                    Text(
+                      'Load',
+                      style: teamColor(mainColor),
+                    ),
+                  ]),
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('recent data'),
+                    ),
+                    ExpansionTile(
+                      leading: Icon(
+                        Icons.subdirectory_arrow_right_outlined,
+                        color: mainColor,
+                      ),
+                      title: Text(
+                        'Saved data',
+                        style: teamColor(mainColor),
+                      ),
+                      children: <Widget>[
+                        ListTile(title: Text('data 1'), onTap: () {})
+                      ],
+                    ),
+                  ],
                 ),
                 ListTile(
                     leading: Icon(
@@ -440,7 +461,6 @@ class _Home extends State<StatefulWidget> {
                                         color: subColor,
                                         onPressed: () {
                                           debugPrint('hell');
-                                          Get.to(PainterScreen());
                                         }),
                                   ),
                                 )
