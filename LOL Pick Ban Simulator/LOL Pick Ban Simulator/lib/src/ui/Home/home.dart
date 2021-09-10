@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/data/list.dart';
+import 'package:flutter_application_1/src/data/database.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/src/getx/getx.dart';
 import 'package:flutter_application_1/src/ui/Widget/Widget.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,6 +17,7 @@ class Home extends StatefulWidget {
 
 class _Home extends State<StatefulWidget> {
   final upController = Get.put(UpdateController());
+
   @override
   Widget build(BuildContext context) {
     displayHeight = MediaQuery.of(context).size.height;
@@ -233,6 +233,7 @@ class _Home extends State<StatefulWidget> {
                     style: teamColor(mainColor),
                   ),
                   dense: true,
+                  onTap: () {},
                 ),
                 ExpansionTile(
                   title: Row(children: [
