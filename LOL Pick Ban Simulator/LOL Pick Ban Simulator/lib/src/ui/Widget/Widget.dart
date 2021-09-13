@@ -383,7 +383,6 @@ Widget feedbackContainer(dynamic com) {
       width: displayWidth * 0.2,
       height: displayHeight * 0.12,
       decoration: new BoxDecoration(
-        shape: BoxShape.circle,
         color: mainColor,
         border: Border.all(color: subColor, width: 3),
         image: DecorationImage(image: AssetImage(com), fit: BoxFit.cover),
@@ -498,7 +497,6 @@ Widget nameText(String _hint, double margin) {
 }
 
 Widget genderButton(String gender) {
-  Color tempConlor;
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
         shadowColor: Colors.black,

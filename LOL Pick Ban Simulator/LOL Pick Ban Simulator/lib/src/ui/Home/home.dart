@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -233,7 +232,42 @@ class _Home extends State<StatefulWidget> {
                     style: teamColor(mainColor),
                   ),
                   dense: true,
-                  onTap: () {},
+                  onTap: () {
+                    Database.addItem(
+                        blueBan1: upController.blueBan[0],
+                        blueBan2: upController.blueBan[1],
+                        blueBan3: upController.blueBan[2],
+                        blueBan4: upController.blueBan[3],
+                        blueBan5: upController.blueBan[4],
+                        bluePlayer1: upController.bluPlayer[0],
+                        bluePlayer1Name: upController.bluPlayerName[0],
+                        bluePlayer2: upController.bluPlayer[1],
+                        bluePlayer2Name: upController.bluPlayerName[1],
+                        bluePlayer3: upController.bluPlayer[2],
+                        bluePlayer3Name: upController.bluPlayerName[2],
+                        bluePlayer4: upController.bluPlayer[3],
+                        bluePlayer4Name: upController.bluPlayerName[3],
+                        bluePlayer5: upController.bluPlayer[4],
+                        bluePlayer5Name: upController.bluPlayerName[4],
+                        blueTeamName: upController.blueTeamName.toString(),
+                        redBan1: upController.redBan[0],
+                        redBan2: upController.redBan[1],
+                        redBan3: upController.redBan[2],
+                        redBan4: upController.redBan[3],
+                        redBan5: upController.redBan[4],
+                        redPlayer1: upController.redPlayer[0],
+                        redPlayer1Name: upController.redPlayerName[0],
+                        redPlayer2: upController.redPlayer[1],
+                        redPlayer2Name: upController.redPlayerName[1],
+                        redPlayer3: upController.redPlayer[2],
+                        redPlayer3Name: upController.redPlayerName[2],
+                        redPlayer4: upController.redPlayer[3],
+                        redPlayer4Name: upController.redPlayerName[3],
+                        redPlayer5: upController.redPlayer[4],
+                        redPlayer5Name: upController.redPlayerName[4],
+                        redTeamName: upController.redTeamName.toString());
+                    debugPrint('Data Added');
+                  },
                 ),
                 ExpansionTile(
                   title: Row(children: [
@@ -619,10 +653,6 @@ Widget banContainer(List banList, String team, int n) {
 
 Widget playerContainer(List playerList, String team, int n) {
   final upController = Get.put(UpdateController());
-  Matrix4 mirror = Matrix4.rotationY(0);
-  if (team == 'red') {
-    mirror = Matrix4.rotationY(math.pi);
-  }
   return Container(
     width: displayWidth * 0.17,
     height: displayHeight * 0.086,
@@ -667,32 +697,28 @@ Widget playerContainer(List playerList, String team, int n) {
           Container(alignment: Alignment.center, child: Container()),
           Container(
             child: LongPressDraggable(
-              data: playerList[n],
-              feedback: feedbackContainer(playerList[n]),
-              childWhenDragging: ChampContainer2(),
-              onDragUpdate: (team) {},
-              onDragCompleted: () {},
-              onDraggableCanceled: (v, f) => {
-                playerList[n] = champIcon, //add Update
-              },
-              onDragEnd: (data) {},
-              onDragStarted: () {
-                draggingTeam = team;
-                trigger = 2;
-                dragging1 = playerList[n];
-                tempNum = n;
-              },
-              child: Transform(
-                  alignment: Alignment.center,
-                  transform: mirror,
-                  child: Container(
-                      child: Obx(() => Image.asset(
-                            playerList[n], //3)
-                            fit: BoxFit.cover,
-                            width: displayWidth * 0.17,
-                            height: displayHeight * 0.086,
-                          )))),
-            ),
+                data: playerList[n],
+                feedback: feedbackContainer(playerList[n]),
+                childWhenDragging: ChampContainer2(),
+                onDragUpdate: (team) {},
+                onDragCompleted: () {},
+                onDraggableCanceled: (v, f) => {
+                      playerList[n] = champIcon, //add Update
+                    },
+                onDragEnd: (data) {},
+                onDragStarted: () {
+                  draggingTeam = team;
+                  trigger = 2;
+                  dragging1 = playerList[n];
+                  tempNum = n;
+                },
+                child: Container(
+                    child: Obx(() => Image.asset(
+                          playerList[n], //3)
+                          fit: BoxFit.cover,
+                          width: displayWidth * 0.17,
+                          height: displayHeight * 0.086,
+                        )))),
           ),
           Positioned(
             top: 1,

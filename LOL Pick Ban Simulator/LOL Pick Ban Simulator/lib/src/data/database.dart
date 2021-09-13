@@ -63,7 +63,7 @@ class Database {
       "bluePlayer4Name": upController.bluPlayerName[3],
       "bluePlayer5": upController.bluPlayer[4],
       "bluePlayer5Name": upController.bluPlayerName[4],
-      "blueTeamName": upController.blueTeamName,
+      "blueTeamName": upController.blueTeamName.toString(),
       "redBan1": upController.redBan[0],
       "redBan2": upController.redBan[1],
       "redBan3": upController.redBan[2],
@@ -79,7 +79,7 @@ class Database {
       "redPlayer4Name": upController.redPlayerName[3],
       "redPlayer5": upController.redPlayer[4],
       "redPlayer5Name": upController.redPlayerName[4],
-      "redTeamName": upController.redTeamName,
+      "redTeamName": upController.redTeamName.toString(),
     };
 
     await documentReferencer
