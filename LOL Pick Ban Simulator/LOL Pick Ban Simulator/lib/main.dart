@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/ui/Home/home.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/widgets.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  return runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/data/list.dart';
-import 'package:flutter_application_1/src/data/database.dart';
+import 'package:flutter_application_1/src/data/database2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/src/getx/getx.dart';
 import 'package:flutter_application_1/src/ui/Widget/Widget.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -22,6 +23,7 @@ class _Home extends State<StatefulWidget> {
     displayHeight = MediaQuery.of(context).size.height;
     displayWidth = MediaQuery.of(context).size.width;
     displayRatio = displayHeight / displayWidth;
+
     return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -233,7 +235,9 @@ class _Home extends State<StatefulWidget> {
                   ),
                   dense: true,
                   onTap: () {
-                    Database.addItem(
+                    var newData = Data(
+                        id: 0,
+                        name: 'savedData',
                         blueBan1: upController.blueBan[0],
                         blueBan2: upController.blueBan[1],
                         blueBan3: upController.blueBan[2],
