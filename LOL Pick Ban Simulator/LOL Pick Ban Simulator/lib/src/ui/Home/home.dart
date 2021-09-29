@@ -270,6 +270,7 @@ class _Home extends State<StatefulWidget> {
                         redPlayer5: upController.redPlayer[4],
                         redPlayer5Name: upController.redPlayerName[4],
                         redTeamName: upController.redTeamName.toString());
+                    DBHelper().insertData(newData);
                     debugPrint('Data Added');
                   },
                 ),
