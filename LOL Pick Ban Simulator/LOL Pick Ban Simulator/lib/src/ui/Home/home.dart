@@ -17,143 +17,150 @@ class Home extends StatefulWidget {
 
 class _Home extends State<StatefulWidget> {
   final upController = Get.put(UpdateController());
-
+  final formState = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     displayHeight = MediaQuery.of(context).size.height;
     displayWidth = MediaQuery.of(context).size.width;
     displayRatio = displayHeight / displayWidth;
 
-    return GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-          FocusManager.instance.primaryFocus?.unfocus();
-          new TextEditingController().clear();
-        },
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-              actions: [
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: mainColor, onPrimary: subColor),
-                    child: Icon(Icons.info),
-                    onPressed: () => showDialog<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(40)),
-                              elevation: 16,
-                              child: SingleChildScrollView(
-                                  child: Container(
-                                      decoration: myBoxDecoration(),
-                                      width: displayWidth * 0.8,
-                                      height: displayHeight * 0.8,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            child: Container(
-                                                width: displayWidth * 0.427,
-                                                height: displayHeight * 0.05,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    color: mainColor),
-                                                child: Text(
-                                                  'Blue Team',
-                                                  style: teamColor(Colors.blue),
-                                                )),
-                                          ),
-                                          Row(
+    return Form(
+        key: formState,
+        child: GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
+              FocusManager.instance.primaryFocus?.unfocus();
+              new TextEditingController().clear();
+            },
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                  actions: [
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: mainColor, onPrimary: subColor),
+                        child: Icon(Icons.info),
+                        onPressed: () => showDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40)),
+                                  elevation: 16,
+                                  child: SingleChildScrollView(
+                                      child: Container(
+                                          decoration: myBoxDecoration(),
+                                          width: displayWidth * 0.8,
+                                          height: displayHeight * 0.8,
+                                          child: Column(
                                             children: [
-                                              blueTeamExpanded(0),
-                                              blueTeamExpanded(1),
-                                              blueTeamExpanded(2),
-                                              blueTeamExpanded(3),
-                                              blueTeamExpanded(4),
-                                            ],
-                                          ),
-                                          Container(
-                                              height: displayHeight * 0.1,
-                                              decoration: BoxDecoration(
-                                                  border: Border(
-                                                bottom:
-                                                    BorderSide(color: subColor),
-                                              )),
-                                              child: Row(
+                                              Container(
+                                                child: Container(
+                                                    width: displayWidth * 0.427,
+                                                    height:
+                                                        displayHeight * 0.05,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                        color: mainColor),
+                                                    child: Text(
+                                                      'Blue Team',
+                                                      style: teamColor(
+                                                          Colors.blue),
+                                                    )),
+                                              ),
+                                              Row(
                                                 children: [
-                                                  blueChampInfo(0),
-                                                  blueChampInfo(1),
-                                                  blueChampInfo(2),
-                                                  blueChampInfo(3),
-                                                  blueChampInfo(4)
+                                                  blueTeamExpanded(0),
+                                                  blueTeamExpanded(1),
+                                                  blueTeamExpanded(2),
+                                                  blueTeamExpanded(3),
+                                                  blueTeamExpanded(4),
                                                 ],
-                                              )),
-                                          Container(
-                                            child: Container(
-                                                width: displayWidth * 0.427,
-                                                height: displayHeight * 0.05,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    color: mainColor),
-                                                child: Text(
-                                                  'Red Team',
-                                                  style: teamColor(Colors.red),
-                                                )),
-                                          ),
-                                          Row(
-                                            children: [
-                                              redTeamExpanded(0),
-                                              redTeamExpanded(1),
-                                              redTeamExpanded(2),
-                                              redTeamExpanded(3),
-                                              redTeamExpanded(4),
-                                            ],
-                                          ),
-                                          Container(
-                                              height: displayHeight * 0.1,
-                                              decoration: BoxDecoration(
-                                                  border: Border(
-                                                bottom:
-                                                    BorderSide(color: subColor),
-                                              )),
-                                              child: Row(
+                                              ),
+                                              Container(
+                                                  height: displayHeight * 0.1,
+                                                  decoration: BoxDecoration(
+                                                      border: Border(
+                                                    bottom: BorderSide(
+                                                        color: subColor),
+                                                  )),
+                                                  child: Row(
+                                                    children: [
+                                                      blueChampInfo(0),
+                                                      blueChampInfo(1),
+                                                      blueChampInfo(2),
+                                                      blueChampInfo(3),
+                                                      blueChampInfo(4)
+                                                    ],
+                                                  )),
+                                              Container(
+                                                child: Container(
+                                                    width: displayWidth * 0.427,
+                                                    height:
+                                                        displayHeight * 0.05,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                        color: mainColor),
+                                                    child: Text(
+                                                      'Red Team',
+                                                      style:
+                                                          teamColor(Colors.red),
+                                                    )),
+                                              ),
+                                              Row(
                                                 children: [
-                                                  redChampInfo(0),
-                                                  redChampInfo(1),
-                                                  redChampInfo(2),
-                                                  redChampInfo(3),
-                                                  redChampInfo(4)
+                                                  redTeamExpanded(0),
+                                                  redTeamExpanded(1),
+                                                  redTeamExpanded(2),
+                                                  redTeamExpanded(3),
+                                                  redTeamExpanded(4),
                                                 ],
-                                              )),
-                                        ],
-                                      ))));
-                        })),
-              ],
-              iconTheme: IconThemeData(color: subColor),
-              toolbarHeight: displayHeight * 0.05,
-              title: Row(children: [
-                Text(
-                  "LOL: Pick Ban Simulator",
-                  style: TextStyle(color: subColor, fontSize: displayRatio * 8),
-                ),
-              ]),
-              brightness: Brightness.dark,
-              backgroundColor: mainColor),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                DrawerHeader(
-                    child: Text('Drawer Header'),
-                    decoration: BoxDecoration(color: mainColor)),
-                ExpansionPanelList(
-                  expansionCallback: (int index, bool isExpanded) {},
-                ),
-                /*ListTile(
+                                              ),
+                                              Container(
+                                                  height: displayHeight * 0.1,
+                                                  decoration: BoxDecoration(
+                                                      border: Border(
+                                                    bottom: BorderSide(
+                                                        color: subColor),
+                                                  )),
+                                                  child: Row(
+                                                    children: [
+                                                      redChampInfo(0),
+                                                      redChampInfo(1),
+                                                      redChampInfo(2),
+                                                      redChampInfo(3),
+                                                      redChampInfo(4)
+                                                    ],
+                                                  )),
+                                            ],
+                                          ))));
+                            })),
+                  ],
+                  iconTheme: IconThemeData(color: subColor),
+                  toolbarHeight: displayHeight * 0.05,
+                  title: Row(children: [
+                    Text(
+                      "LOL: Pick Ban Simulator",
+                      style: TextStyle(
+                          color: subColor, fontSize: displayRatio * 8),
+                    ),
+                  ]),
+                  brightness: Brightness.dark,
+                  backgroundColor: mainColor),
+              drawer: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    DrawerHeader(
+                        child: Text('Drawer Header'),
+                        decoration: BoxDecoration(color: mainColor)),
+                    ExpansionPanelList(
+                      expansionCallback: (int index, bool isExpanded) {},
+                    ),
+                    /*ListTile(
                   leading: Icon(
                     Icons.edit,
                     size: displayRatio * 20,
@@ -223,339 +230,344 @@ class _Home extends State<StatefulWidget> {
                         });
                   },
                 ),*/
-                ListTile(
-                  leading: Icon(
-                    Icons.save,
-                    size: displayRatio * 20,
-                    color: mainColor,
-                  ),
-                  title: Text(
-                    'Save',
-                    style: teamColor(mainColor),
-                  ),
-                  dense: true,
-                  onTap: () {
-                    var newData = Data(
-                        id: 0,
-                        name: 'savedData',
-                        blueBan1: upController.blueBan[0],
-                        blueBan2: upController.blueBan[1],
-                        blueBan3: upController.blueBan[2],
-                        blueBan4: upController.blueBan[3],
-                        blueBan5: upController.blueBan[4],
-                        bluePlayer1: upController.bluPlayer[0],
-                        bluePlayer1Name: upController.bluPlayerName[0],
-                        bluePlayer2: upController.bluPlayer[1],
-                        bluePlayer2Name: upController.bluPlayerName[1],
-                        bluePlayer3: upController.bluPlayer[2],
-                        bluePlayer3Name: upController.bluPlayerName[2],
-                        bluePlayer4: upController.bluPlayer[3],
-                        bluePlayer4Name: upController.bluPlayerName[3],
-                        bluePlayer5: upController.bluPlayer[4],
-                        bluePlayer5Name: upController.bluPlayerName[4],
-                        blueTeamName: upController.blueTeamName.toString(),
-                        redBan1: upController.redBan[0],
-                        redBan2: upController.redBan[1],
-                        redBan3: upController.redBan[2],
-                        redBan4: upController.redBan[3],
-                        redBan5: upController.redBan[4],
-                        redPlayer1: upController.redPlayer[0],
-                        redPlayer1Name: upController.redPlayerName[0],
-                        redPlayer2: upController.redPlayer[1],
-                        redPlayer2Name: upController.redPlayerName[1],
-                        redPlayer3: upController.redPlayer[2],
-                        redPlayer3Name: upController.redPlayerName[2],
-                        redPlayer4: upController.redPlayer[3],
-                        redPlayer4Name: upController.redPlayerName[3],
-                        redPlayer5: upController.redPlayer[4],
-                        redPlayer5Name: upController.redPlayerName[4],
-                        redTeamName: upController.redTeamName.toString());
-                    DBHelper().insertData(newData);
-                    debugPrint('Data Added');
-                  },
-                ),
-                ExpansionTile(
-                  title: Row(children: [
-                    Icon(
-                      Icons.download,
-                      size: displayRatio * 20,
-                      color: mainColor,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: displayWidth * 0.04),
-                    ),
-                    Text(
-                      'Load',
-                      style: teamColor(mainColor),
-                    ),
-                  ]),
-                  children: <Widget>[
                     ListTile(
-                      title: Text('recent data'),
-                    ),
-                    ExpansionTile(
                       leading: Icon(
-                        Icons.subdirectory_arrow_right_outlined,
+                        Icons.save,
+                        size: displayRatio * 20,
                         color: mainColor,
                       ),
                       title: Text(
-                        'Saved data',
+                        'Save',
                         style: teamColor(mainColor),
                       ),
+                      dense: true,
+                      onTap: () {
+                        var newData = Data(
+                            id: 0,
+                            name: 'savedData',
+                            blueBan1: upController.blueBan[0],
+                            blueBan2: upController.blueBan[1],
+                            blueBan3: upController.blueBan[2],
+                            blueBan4: upController.blueBan[3],
+                            blueBan5: upController.blueBan[4],
+                            bluePlayer1: upController.bluPlayer[0],
+                            bluePlayer1Name: upController.bluPlayerName[0],
+                            bluePlayer2: upController.bluPlayer[1],
+                            bluePlayer2Name: upController.bluPlayerName[1],
+                            bluePlayer3: upController.bluPlayer[2],
+                            bluePlayer3Name: upController.bluPlayerName[2],
+                            bluePlayer4: upController.bluPlayer[3],
+                            bluePlayer4Name: upController.bluPlayerName[3],
+                            bluePlayer5: upController.bluPlayer[4],
+                            bluePlayer5Name: upController.bluPlayerName[4],
+                            blueTeamName: upController.blueTeamName.toString(),
+                            redBan1: upController.redBan[0],
+                            redBan2: upController.redBan[1],
+                            redBan3: upController.redBan[2],
+                            redBan4: upController.redBan[3],
+                            redBan5: upController.redBan[4],
+                            redPlayer1: upController.redPlayer[0],
+                            redPlayer1Name: upController.redPlayerName[0],
+                            redPlayer2: upController.redPlayer[1],
+                            redPlayer2Name: upController.redPlayerName[1],
+                            redPlayer3: upController.redPlayer[2],
+                            redPlayer3Name: upController.redPlayerName[2],
+                            redPlayer4: upController.redPlayer[3],
+                            redPlayer4Name: upController.redPlayerName[3],
+                            redPlayer5: upController.redPlayer[4],
+                            redPlayer5Name: upController.redPlayerName[4],
+                            redTeamName: upController.redTeamName.toString());
+                        DBHelper().insertData(newData);
+                        debugPrint('Data Added');
+                        debugPrint(newData.toString());
+                      },
+                    ),
+                    ExpansionTile(
+                      title: Row(children: [
+                        Icon(
+                          Icons.download,
+                          size: displayRatio * 20,
+                          color: mainColor,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: displayWidth * 0.04),
+                        ),
+                        Text(
+                          'Load',
+                          style: teamColor(mainColor),
+                        ),
+                      ]),
                       children: <Widget>[
-                        ListTile(title: Text('data 1'), onTap: () {})
+                        ListTile(
+                          title: Text('recent data'),
+                        ),
+                        ExpansionTile(
+                          leading: Icon(
+                            Icons.subdirectory_arrow_right_outlined,
+                            color: mainColor,
+                          ),
+                          title: Text(
+                            'Saved data',
+                            style: teamColor(mainColor),
+                          ),
+                          children: <Widget>[
+                            ListTile(title: Text('data 1'), onTap: () {})
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-                ListTile(
-                    leading: Icon(
-                      Icons.delete_forever_outlined,
-                      size: displayRatio * 20,
-                      color: mainColor,
-                    ),
-                    title: Text(
-                      'Delete Current Simulation',
-                      style: teamColor(mainColor),
-                    ),
-                    /*trailing: Icon(
+                    ListTile(
+                        leading: Icon(
+                          Icons.delete_forever_outlined,
+                          size: displayRatio * 20,
+                          color: mainColor,
+                        ),
+                        title: Text(
+                          'Delete Current Simulation',
+                          style: teamColor(mainColor),
+                        ),
+                        /*trailing: Icon(
                     Icons.drag_handle,
                     size: displayRatio * 20,
                     color: mainColor,
                   ),*/
-                    dense: true,
-                    onTap: () => showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Alert Before Progress'),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: const <Widget>[
-                                    Text(
-                                        'Current data will be removed without saving it'),
-                                  ],
-                                ),
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text(
-                                    'Approve',
-                                    style: TextStyle(color: subColor),
+                        dense: true,
+                        onTap: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Alert Before Progress'),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: const <Widget>[
+                                        Text(
+                                            'Current data will be removed without saving it'),
+                                      ],
+                                    ),
                                   ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    for (int i = 0; i < 5; i++) {
-                                      upController.bluPlayer[i] = champIcon;
-                                      upController.blueBan[i] = champIcon;
-                                      upController.redPlayer[i] = champIcon;
-                                      upController.redBan[i] = champIcon;
-                                    }
-                                    setState(() {});
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        )),
-                ListTile(
-                    leading: Icon(
-                      Icons.exit_to_app,
-                      size: displayRatio * 20,
-                      color: mainColor,
-                    ),
-                    title: Text(
-                      'Exit App',
-                      style: teamColor(mainColor),
-                    ),
-                    dense: true,
-                    onTap: () => showDialog<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Exit Alert'),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: const <Widget>[
-                                    Text(
-                                        'Current data will be removed without saving it.'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text(
+                                        'Approve',
+                                        style: TextStyle(color: subColor),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        for (int i = 0; i < 5; i++) {
+                                          upController.bluPlayer[i] = champIcon;
+                                          upController.blueBan[i] = champIcon;
+                                          upController.redPlayer[i] = champIcon;
+                                          upController.redBan[i] = champIcon;
+                                        }
+                                        setState(() {});
+                                      },
+                                    ),
                                   ],
-                                ),
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text(
-                                    'Approve',
-                                    style: TextStyle(color: subColor),
-                                  ),
-                                  onPressed: () {
-                                    if (Platform.isAndroid) {
-                                      SystemNavigator.pop();
-                                    } else
-                                      exit(0);
-                                    ;
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        )),
-                Container(
-                  padding: EdgeInsets.only(top: displayHeight * 0.38),
-                  child: Text(
-                      "LOL: Pick Ban Simulator IS NOT endorsed by Riot Games and does not reflect the views or opinions of those who produce or manage Riot Games or the League of Legends officially. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games. Inc. League of Legends © Riot Games. Inc. v1.00",
-                      style: TextStyle(
-                          color: Colors.black45,
-                          fontSize: displayHeight * 0.015)),
-                ),
-              ],
-            ),
-          ),
-          body: Container(
-              width: displayWidth,
-              height: displayHeight,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      teamName(Colors.blue, "DAMWON"),
-                      Container(
-                        height: displayHeight * 0.05,
-                        decoration: myBoxDecoration(),
-                        child: Container(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            'Patch 11.12',
-                            style: TextStyle(
-                                fontSize: displayRatio * 3,
-                                color: Colors.white54),
-                            textAlign: TextAlign.center,
-                          ),
+                                );
+                              },
+                            )),
+                    ListTile(
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          size: displayRatio * 20,
+                          color: mainColor,
                         ),
-                        width: displayWidth * 0.146,
-                      ),
-                      teamName(Colors.red, "SKT T1"),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      banContainer(upController.blueBan, 'blue', 0),
-                      banContainer(upController.blueBan, 'blue', 1),
-                      banContainer(upController.blueBan, 'blue', 2),
-                      banContainer(upController.blueBan, 'blue', 3),
-                      banContainer(upController.blueBan, 'blue', 4),
-                      Container(
-                          width: displayWidth * 0.1465,
-                          height: displayHeight * 0.05,
-                          decoration: myBoxDecoration(),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'BANS',
-                              style: teamColor(subColor),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      banContainer(upController.redBan, 'red', 0),
-                      banContainer(upController.redBan, 'red', 1),
-                      banContainer(upController.redBan, 'red', 2),
-                      banContainer(upController.redBan, 'red', 3),
-                      banContainer(upController.redBan, 'red', 4),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          playerContainer(upController.bluPlayer, 'blue', 0),
-                          playerContainer(upController.bluPlayer, 'blue', 1),
-                          playerContainer(upController.bluPlayer, 'blue', 2),
-                          playerContainer(upController.bluPlayer, 'blue', 3),
-                          playerContainer(upController.bluPlayer, 'blue', 4)
-                        ],
-                      ),
-                      Stack(
-                        children: [
-                          InteractiveViewer(
-                              minScale: 1.0,
-                              maxScale: 4.0,
-                              child: Stack(children: [
-                                Container(
-                                  height: displayHeight * 0.43,
-                                  width: displayWidth * 0.66,
-                                  decoration: BoxDecoration(
-                                      color: mainColor,
-                                      image: DecorationImage(
-                                          image: new AssetImage(
-                                              'assets/images/map.png'),
-                                          fit: BoxFit.cover)),
-                                ),
-                                Positioned(
-                                  left: displayWidth * 0.54,
-                                  top: displayHeight * 0.0,
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    child: IconButton(
-                                        icon: Icon(Icons.zoom_in),
-                                        color: subColor,
-                                        onPressed: () {
-                                          debugPrint('hell');
-                                        }),
+                        title: Text(
+                          'Exit App',
+                          style: teamColor(mainColor),
+                        ),
+                        dense: true,
+                        onTap: () => showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Exit Alert'),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: const <Widget>[
+                                        Text(
+                                            'Current data will be removed without saving it.'),
+                                      ],
+                                    ),
                                   ),
-                                )
-                              ])),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text(
+                                        'Approve',
+                                        style: TextStyle(color: subColor),
+                                      ),
+                                      onPressed: () {
+                                        if (Platform.isAndroid) {
+                                          SystemNavigator.pop();
+                                        } else
+                                          exit(0);
+                                        ;
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            )),
+                    Container(
+                      padding: EdgeInsets.only(top: displayHeight * 0.38),
+                      child: Text(
+                          "LOL: Pick Ban Simulator IS NOT endorsed by Riot Games and does not reflect the views or opinions of those who produce or manage Riot Games or the League of Legends officially. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games. Inc. League of Legends © Riot Games. Inc. v1.00",
+                          style: TextStyle(
+                              color: Colors.black45,
+                              fontSize: displayHeight * 0.015)),
+                    ),
+                  ],
+                ),
+              ),
+              body: Container(
+                  width: displayWidth,
+                  height: displayHeight,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          teamName(Colors.blue, "DAMWON"),
+                          Container(
+                            height: displayHeight * 0.05,
+                            decoration: myBoxDecoration(),
+                            child: Container(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                'Patch 11.12',
+                                style: TextStyle(
+                                    fontSize: displayRatio * 3,
+                                    color: Colors.white54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            width: displayWidth * 0.146,
+                          ),
+                          teamName(Colors.red, "SKT T1"),
                         ],
                       ),
-                      Column(
+                      Row(
                         children: [
-                          playerContainer(upController.redPlayer, 'red', 0),
-                          playerContainer(upController.redPlayer, 'red', 1),
-                          playerContainer(upController.redPlayer, 'red', 2),
-                          playerContainer(upController.redPlayer, 'red', 3),
-                          playerContainer(upController.redPlayer, 'red', 4)
+                          banContainer(upController.blueBan, 'blue', 0),
+                          banContainer(upController.blueBan, 'blue', 1),
+                          banContainer(upController.blueBan, 'blue', 2),
+                          banContainer(upController.blueBan, 'blue', 3),
+                          banContainer(upController.blueBan, 'blue', 4),
+                          Container(
+                              width: displayWidth * 0.1465,
+                              height: displayHeight * 0.05,
+                              decoration: myBoxDecoration(),
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'BANS',
+                                  style: teamColor(subColor),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                          banContainer(upController.redBan, 'red', 0),
+                          banContainer(upController.redBan, 'red', 1),
+                          banContainer(upController.redBan, 'red', 2),
+                          banContainer(upController.redBan, 'red', 3),
+                          banContainer(upController.redBan, 'red', 4),
                         ],
-                      )
+                      ),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              playerContainer(
+                                  upController.bluPlayer, 'blue', 0),
+                              playerContainer(
+                                  upController.bluPlayer, 'blue', 1),
+                              playerContainer(
+                                  upController.bluPlayer, 'blue', 2),
+                              playerContainer(
+                                  upController.bluPlayer, 'blue', 3),
+                              playerContainer(upController.bluPlayer, 'blue', 4)
+                            ],
+                          ),
+                          Stack(
+                            children: [
+                              InteractiveViewer(
+                                  minScale: 1.0,
+                                  maxScale: 4.0,
+                                  child: Stack(children: [
+                                    Container(
+                                      height: displayHeight * 0.43,
+                                      width: displayWidth * 0.66,
+                                      decoration: BoxDecoration(
+                                          color: mainColor,
+                                          image: DecorationImage(
+                                              image: new AssetImage(
+                                                  'assets/images/map.png'),
+                                              fit: BoxFit.cover)),
+                                    ),
+                                    Positioned(
+                                      left: displayWidth * 0.54,
+                                      top: displayHeight * 0.0,
+                                      child: Container(
+                                        width: 40,
+                                        height: 40,
+                                        child: IconButton(
+                                            icon: Icon(Icons.zoom_in),
+                                            color: subColor,
+                                            onPressed: () {
+                                              debugPrint('hell');
+                                            }),
+                                      ),
+                                    )
+                                  ])),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              playerContainer(upController.redPlayer, 'red', 0),
+                              playerContainer(upController.redPlayer, 'red', 1),
+                              playerContainer(upController.redPlayer, 'red', 2),
+                              playerContainer(upController.redPlayer, 'red', 3),
+                              playerContainer(upController.redPlayer, 'red', 4)
+                            ],
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: DefaultTabController(
+                            length: 5,
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: TabBar(
+                                    indicator: BoxDecoration(color: subColor),
+                                    labelStyle: teamColor(subColor),
+                                    unselectedLabelColor: subColor,
+                                    indicatorColor: mainColor,
+                                    labelColor: Colors.white,
+                                    tabs: [
+                                      Tab(text: 'TOP'),
+                                      Tab(text: 'JG'),
+                                      Tab(text: 'MID'),
+                                      Tab(text: 'BOT'),
+                                      Tab(text: 'SUP')
+                                    ],
+                                  ),
+                                  decoration: myTabBoxDecoration(),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: TabBarView(children: [
+                                    championGrid(topList, topPlayerList),
+                                    championGrid(jugList, jugPlayerList),
+                                    championGrid(midList, midPlayerList),
+                                    championGrid(botList, botPlayerList),
+                                    championGrid(supList, supPlayerList),
+                                  ]),
+                                ),
+                              ],
+                            )),
+                      ),
                     ],
-                  ),
-                  Expanded(
-                    child: DefaultTabController(
-                        length: 5,
-                        child: Column(
-                          children: [
-                            Container(
-                              child: TabBar(
-                                indicator: BoxDecoration(color: subColor),
-                                labelStyle: teamColor(subColor),
-                                unselectedLabelColor: subColor,
-                                indicatorColor: mainColor,
-                                labelColor: Colors.white,
-                                tabs: [
-                                  Tab(text: 'TOP'),
-                                  Tab(text: 'JG'),
-                                  Tab(text: 'MID'),
-                                  Tab(text: 'BOT'),
-                                  Tab(text: 'SUP')
-                                ],
-                              ),
-                              decoration: myTabBoxDecoration(),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: TabBarView(children: [
-                                championGrid(topList, topPlayerList),
-                                championGrid(jugList, jugPlayerList),
-                                championGrid(midList, midPlayerList),
-                                championGrid(botList, botPlayerList),
-                                championGrid(supList, supPlayerList),
-                              ]),
-                            ),
-                          ],
-                        )),
-                  ),
-                ],
-              )),
-        ));
+                  )),
+            )));
   }
 }
 

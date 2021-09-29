@@ -14,6 +14,7 @@ DBHelper() async {
     version: 1,
   );
 
+  // ignore: unused_element
   Future<void> insertData(Data data) async {
     final db = await database;
     await db.insert(
